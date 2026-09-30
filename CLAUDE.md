@@ -86,11 +86,17 @@ De bedrijven waarvoor we software ontwikkelen.
 Ik ben relatief nieuw met Git en GitHub. Houd rekening met het volgende:
 
 ### Branch strategie
+**Nu (bouwfase, één ontwikkelaar): alles direct op `main`/`master`** - vastgesteld door Roy op 30 september 2026: "commit en push de changes na iedere stap. Dat kan dan toch gewoon in de hoofd branch? We zijn nog aan het bouwen ... Ik ben nu ook de enige developer." Feature-branches voegen nu niets toe: ze zijn bedoeld voor review door anderen, parallel werk, of het beschermen van een stabiele `main` terwijl er al productie op draait. Geen van drieën geldt nu.
+- Een plan wordt stap voor stap gebouwd; na elke afgeronde stap volgen een melding (wat er gedaan is, wat Roy kan testen) en een commit + push op `main`/`master`.
+- Zodra een versie live gaat: een tag per live-versie (bv. `v7.1.0`).
+- De strategie hieronder (`develop` + `feature/...`) komt terug zodra er een tweede ontwikkelaar bijkomt of een versie in productie draait.
+
+**Later (meerdere ontwikkelaars / productie):**
 - `main` — stabiele, werkende code (nooit direct op werken)
 - `develop` — integratiebranch voor lopende ontwikkeling
 - `feature/naam` — per feature of taak een eigen branch (bijv. `feature/helpdesk-login`)
 
-### Stappenplan per feature
+### Stappenplan per feature (geldt pas weer bij "Later" hierboven)
 1. Start altijd vanuit `develop`: `git checkout develop && git pull`
 2. Maak een feature branch: `git checkout -b feature/naam`
 3. Werk en commit regelmatig met een duidelijke boodschap
