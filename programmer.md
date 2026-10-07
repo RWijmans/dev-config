@@ -109,6 +109,15 @@ DtPrintServer7: `PrinterAutoSelected`, `GrainAutoSelected`,
 - Elke handmatige keuze via een UI-veld zet de vlag altijd hard op `false`,
   ook als de waarde toevallig gelijk is aan wat de automatische berekening
   ook zou hebben gekozen.
+- **Een stap in een keten met meer dan twee toestanden** (7 oktober 2026,
+  DtPrintServer7): zijn er naast "automatisch" en "met de hand" ook "nog niet
+  gedaan" en "mislukt", dan is een bool te weinig. Dan een enum per stap (in
+  DtPrintServer7: `WorkflowStepState` Open/Script/Error/Manual op de vier
+  stappen van een printopdracht) - dezelfde regels als hierboven: `Manual`
+  wordt door geen automatische herberekening aangeraakt. `PrinterAutoSelected`
+  en `BatchSequenceAutoSet` uit de opsomming bovenaan zijn daarin opgegaan;
+  `GrainAutoSelected` en `PrintMediumFormatAutoSelected` zijn gewone
+  bool-vlaggen volgens dit patroon gebleven.
 
 ## 6. EF Core-migraties: vast controlelijstje
 
